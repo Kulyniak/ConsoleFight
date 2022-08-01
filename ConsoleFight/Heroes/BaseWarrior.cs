@@ -15,5 +15,57 @@ namespace ConsoleFight.Heroes
         {
            
         }
+        public bool IsAlive {
+            get
+            {
+                if (HP>0) 
+                    {
+                    return false;
+                    }
+               else
+                {
+                    return true;    
+                }
+            } 
+           
+        }
+        public int Attack()
+        {
+            if (Armor > 0)
+                return Punch;
+            if (Punch == 1)
+                return 1;
+            return --Punch;
+        }
+
+        public void Defense(int power)
+        {
+            if (Armor > 0)
+            {
+                var check = power / 2;
+                if (check < Armor)
+                {
+                    Armor -= check;
+                }
+                else
+                {
+                    var ext = check - Armor;
+                    HP -= ext;
+                    Armor = 0;
+                }
+
+                HP -= (power - check);
+            }
+            else
+            {
+                HP -= power;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Base Hero";
+        }
     }
 }
+
